@@ -1,132 +1,81 @@
-# Enhanced Trading Strategy V9
+# 📈 Enhanced Trading Strategy Suite
 
-**Enhanced Trading Strategy V9** is a Streamlit-powered desktop application that combines technical analysis and machine learning to backtest and evaluate stock trading strategies. It provides a robust GUI for users to load data, configure indicators, simulate trades, and analyze strategy performance.
+This repository provides a powerful combination of a **Streamlit-based backtesting framework** and a **Tkinter-based IBKR trading bot**. Together, they enable strategy research, machine learning-enhanced signal generation, and optional live trading via Interactive Brokers.
 
-## 🚀 Features
+## 🧠 Streamlit App: `trading_strategy_enhanced_V9.py`
 
-- **Streamlit GUI** for easy configuration and visualization
-- **Technical Indicators**:
-  - RSI, MACD, ATR, EMA, Bollinger Bands, and more
-- **Machine Learning**:
-  - XGBoost-based model to predict long/short signals
-  - TimeSeriesSplit cross-validation
-- **Backtesting Engine**:
-  - Handles position sizing, stop-loss, take-profit, and trailing stops
-  - Simulates realistic order execution with slippage and commissions
-- **Advanced Metrics**:
-  - Profit Factor, Sharpe Ratio, Drawdown, Win Rate, and more
-- **Interactive Visualizations**:
-  - Plotly charts for price action, indicators, equity curve, and drawdown
-  - Matplotlib confusion matrix for model evaluation
-- **Structured Logging**:
-  - Logs saved to `~/trading_strategy_logs/trading_strategy_refactored.log`
+A full-featured trading strategy simulator with:
 
-## 🛠️ Requirements
+### ✅ Features
 
-- Python 3.8+
-- Packages:
-  ```bash
-  pip install -r requirements.txt
-  ```
+- **Technical Indicators**: RSI, MACD, ATR, Bollinger Bands, EMAs, Volume, and Momentum
+- **Machine Learning Signals**: Trains XGBoost models to generate long/short signals
+- **Interactive GUI**: Configure parameters via Streamlit sidebar
+- **Backtest Engine**: Includes:
+  - Stop loss, take profit, trailing stop
+  - Equity tracking, PnL, drawdown
+  - Realistic cost modeling (slippage, commission)
+- **Visualization**:
+  - Multi-panel Plotly charts for price, RSI, MACD, equity curve, drawdown
+  - Matplotlib confusion matrices
+- **Performance Metrics**:
+  - Net Profit, Win Rate, Drawdown, Sharpe Ratio, Sortino Ratio, Profit Factor, and more
+- **Logging & Caching**:
+  - Logs stored at `~/trading_strategy_logs/trading_strategy_refactored.log`
+  - Caching with `@st.cache_data` for speed
 
+### 🛠 Run the App
+
+```bash
 streamlit run trading_strategy_enhanced_V9.py
 
-Required Libraries
-streamlit
+### How To Run
+python IBKR_Trading_Bot_V2.py
 
-pandas
+### Tech Stack
+Python 3.8+
 
-numpy
+Streamlit: GUI and data interaction
 
-yfinance
+XGBoost: Machine learning signal generation
 
-plotly
+Plotly + Matplotlib: Visualizations
 
-xgboost
+yfinance: Historical stock data
 
-scikit-learn
+scikit-learn: Model evaluation
 
-matplotlib
+IB API: Real-time trading interface
 
-📊 How It Works
-Load and Validate Tickers: Choose from defaults or enter your own.
+### Requirements Text
+streamlit>=1.30.0
+pandas>=1.3.0
+numpy>=1.21.0
+yfinance>=0.2.0
+plotly>=5.9.0
+xgboost>=1.7.0
+scikit-learn>=1.1.0
+matplotlib>=3.5.0
+ibapi>=9.81.1.post1
 
-Configure Strategy Parameters: RSI levels, EMAs, ATR length, etc.
+## Project Structure
+📁 trading-strategy-suite/
+├── trading_strategy_enhanced_V9.py    # Streamlit strategy simulator
+├── IBKR_Trading_Bot_V2.py             # Live trading GUI bot using IB API
+├── requirements.txt
+└── README.md                          # This file
 
-Train ML Models (optional): Use XGBoost to predict entry signals.
 
-Run Backtest: Simulates trades using selected signals (manual or ML).
-
-Analyze Results:
-
-View metrics (Net Profit, Max Drawdown, Win Rate, etc.)
-
-Inspect trade list and durations
-
-Review confusion matrices
-
-Explore interactive charts
-
-🧠 Machine Learning Approach
-Target Definitions:
-
-Long: Close > EMA20 (next bar)
-
-Short: Close < EMA20 (next bar)
-
-Features Used:
-
-RSI, MACD, Momentum, ATR, Volume Ratios, EMA Differences
-
-Model:
-
-XGBoostClassifier
-
-GridSearchCV with TimeSeriesSplit for parameter tuning
-
-📈 Visualization
-Main Plot: Candlestick with EMAs, trade entries, exits
-
-RSI & MACD: Plotted with thresholds and Bollinger overlays
-
-Equity Curve: With drawdown shaded
-
-Confusion Matrix: Separate for Long and Short models
-
-🧪 Example Usage
-bash
-Copy
-Edit
-streamlit run trading_strategy_enhanced_V9.py
-Then interact with the sidebar to:
-
-Select ticker(s) like AAPL, TSLA, NVDA
-
-Choose time frame (1d, 1h, 15m, etc.)
-
-Enable or disable ML predictions
-
-View strategy performance in the main panel
-
-📁 Logs & Output
-Logs stored at:
-
-bash
-Copy
-Edit
-~/trading_strategy_logs/trading_strategy_refactored.log
-Data caching enabled via @st.cache_data
-
-🔍 License
-MIT License. See LICENSE file for details.
-
-🙌 Acknowledgements
+### Acknowledgements
 Streamlit
 
-Yahoo Finance via yfinance
+Interactive Brokers API
+
+Yahoo Finance
 
 XGBoost
 
 scikit-learn
 
 Plotly
+```
